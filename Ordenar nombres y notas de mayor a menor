@@ -1,0 +1,67 @@
+// notas.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include <string>
+#define MAX 10
+
+using namespace std;
+
+void cargar_notas(int nota[MAX], string nombre[MAX], int q);
+void ordenar_notas(int nota[MAX], string nombre[MAX], int q);
+
+
+void main()
+{ 
+	int nota[MAX],i,j,c=1,q;
+	string nombre[MAX];
+	cout<<"Cuantos nombres y notas va a ingresar?: "<<endl;
+	cin>>q;
+	cargar_notas(nota, nombre, q);
+	ordenar_notas(nota, nombre, q);
+	getch();
+	
+}
+
+void cargar_notas(int nota[MAX], string nombre[MAX], int q)
+{
+	int i;
+	for(i=0;i<q;i++)
+	{
+		cin.ignore();
+		cout<<"Nombre: ";
+		getline(cin,nombre[i]);
+		cout<<"Nota: ";
+		cin>>nota[i];
+	}
+}
+
+void ordenar_notas(int nota[MAX], string nombre[MAX], int q)
+{
+	int i,j,auxnotas;
+	string auxnombre;
+
+	for(i=0;i<q-1;i++)
+		for(j=i+1;j<q;j++)
+		{
+			if(nota[j]>nota[i])
+			{
+				auxnotas=nota[i];
+				nota[i]=nota[j];
+				nota[j]=auxnotas;
+
+				auxnombre=nombre[i];
+				nombre[i]=nombre[j];
+				nombre[j]=auxnombre;
+
+			}
+		}
+
+	for(i=0;i<q;i++)
+	{
+		cout<<"Nombre :"<<nombre[i]<<endl;
+		cout<<"Nota :"<<nota[i]<<endl;
+	}
+}
